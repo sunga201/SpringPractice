@@ -2,6 +2,8 @@ package com.example.study.service;
 
 import com.example.study.ifs.CrudInterface;
 import com.example.study.model.entity.User;
+import com.example.study.model.enumClass.ItemStatus;
+import com.example.study.model.enumClass.UserStatus;
 import com.example.study.model.network.Header;
 import com.example.study.model.network.request.UserApiRequest;
 import com.example.study.model.network.response.UserApiResponse;
@@ -32,7 +34,7 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
         User user = User.builder()
                 .account(userApiRequest.getAccount())
                 .password(userApiRequest.getPassword())
-                .status("REGISTERED")
+                .status(UserStatus.REGISTERED)
                 .phoneNumber(userApiRequest.getPhoneNumber())
                 .email(userApiRequest.getEmail())
                 .registeredAt(LocalDateTime.now())
@@ -60,21 +62,23 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
     @Override
     public Header<UserApiResponse> update(Header<UserApiRequest> request) {
         // 1. 데이터 가져오기
-        UserApiRequest userApiRequest = request.getData();
+        UserApiRequest body = request.getData();
 
         // 2. id를 이용해 user data 찾기
-        Long id=userApiRequest.getId();
+        Long id=body.getId();
         Optional<User> opt=userRepository.findById(id);
 
         return opt.map(user->{
             // 3. Update
-            user.setAccount(userApiRequest.getAccount())
-                    .setStatus(userApiRequest.getStatus())
-                    .setPassword(userApiRequest.getPassword())
-                    .setPhoneNumber(userApiRequest.getPhoneNumber())
-                    .setEmail(userApiRequest.getEmail())
-                    .setRegisteredAt(userApiRequest.getRegisteredAt())
-                    .setUnregisteredAt(userApiRequest.getUnregisteredAt());
+            user.setAccount(body.getAccount())
+                    .setStatus(body.getStatus())
+                    .setPassword(body.getPassword())
+                    .setPhoneNumber(body.getPhoneNumber())
+                    .setEmail(body.getEmail())
+                    .setRegisteredAt(body.getRegisteredAt())
+                    ;
+            if(body.getStatus().equals(ItemStatus.UNREGISTERED)) // status가 UNREGISTERED로 변하면
+                user.setUnregisteredAt(LocalDateTime.now());     // unregisteredAt 필드 업데이트
             return user;
         })
                 .map(user -> userRepository.save(user))    // update 내역 저장하고, 업데이트된 user 반환
