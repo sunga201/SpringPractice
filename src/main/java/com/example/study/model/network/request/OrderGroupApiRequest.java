@@ -1,8 +1,8 @@
 package com.example.study.model.network.request;
 
-import com.example.study.model.enumClass.OrderGroupOrderType;
-import com.example.study.model.enumClass.OrderGroupPaymentType;
-import com.example.study.model.enumClass.OrderGroupStatus;
+import com.example.study.model.enumClass.OrderType;
+import com.example.study.model.enumClass.PaymentType;
+import com.example.study.model.enumClass.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,17 +22,17 @@ public class OrderGroupApiRequest {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private OrderGroupStatus status;
+    private OrderStatus status;
 
     @Enumerated(EnumType.STRING)
-    private OrderGroupOrderType orderType;
+    private OrderType orderType;
 
     private String revAddress;
 
     private String revName;
 
     @Enumerated(EnumType.STRING)
-    private OrderGroupPaymentType paymentType;
+    private PaymentType paymentType;
 
     private BigDecimal totalPrice;
 

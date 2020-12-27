@@ -2,6 +2,9 @@ package com.example.study.repository;
 
 import com.example.study.StudyApplicationTests;
 import com.example.study.model.entity.OrderGroup;
+import com.example.study.model.enumClass.OrderType;
+import com.example.study.model.enumClass.PaymentType;
+import com.example.study.model.enumClass.OrderStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +21,11 @@ public class OrderGroupRepositoryTest extends StudyApplicationTests {
     @Test
     public void create(){
         OrderGroup orderGroup=new OrderGroup();
-        orderGroup.setStatus("WAITING");
-        orderGroup.setOrderType("test");
+        orderGroup.setStatus(OrderStatus.ORDERING);
+        orderGroup.setOrderType(OrderType.ENTIRE);
         orderGroup.setRevName("홍성현");
         orderGroup.setRevAddress("서울특별시 동대문구 외대앞로 685");
-        orderGroup.setPaymentType("credit card");
+        orderGroup.setPaymentType(PaymentType.CARD);
         orderGroup.setTotalPrice(BigDecimal.valueOf(700000));
         orderGroup.setTotalQuantity(2);
         orderGroup.setCreatedAt(LocalDateTime.now());
