@@ -2,6 +2,7 @@ package com.example.study.service;
 
 import com.example.study.ifs.CrudInterface;
 import com.example.study.model.entity.Item;
+import com.example.study.model.enumClass.ItemStatus;
 import com.example.study.model.network.Header;
 import com.example.study.model.network.request.ItemApiRequest;
 import com.example.study.model.network.response.ItemApiResponse;
@@ -26,7 +27,7 @@ public class ItemApiLogicService implements CrudInterface<ItemApiRequest, ItemAp
     public Header<ItemApiResponse> create(Header<ItemApiRequest> request) {
         ItemApiRequest body = request.getData();
         Item item= Item.builder()
-                .status("REGISTERED")
+                .status(ItemStatus.REGISTERED)
                 .name(body.getName())
                 .title(body.getTitle())
                 .content(body.getContent())
@@ -62,7 +63,8 @@ public class ItemApiLogicService implements CrudInterface<ItemApiRequest, ItemAp
                     .setContent(body.getContent())
                     .setPrice(body.getPrice())
                     .setBrandName(body.getBrandName());
-
+            if(body.getStatus().equals(ItemStatus.UNREGISTERED)) // status가 UNREGISTERED로 변하면
+                item.setUnregisteredAt(LocalDateTime.now());     // unregisteredAt 필드 업데이트
             return item;
         })
                 .map(item -> itemRepository.save(item))
@@ -80,7 +82,9 @@ public class ItemApiLogicService implements CrudInterface<ItemApiRequest, ItemAp
     }
 
     private Header<ItemApiResponse> getResponse(Item item){
+
         ItemApiResponse body= ItemApiResponse.builder()
+                .id(item.getId())
                 .status(item.getStatus())
                 .name(item.getName())
                 .title(item.getTitle())

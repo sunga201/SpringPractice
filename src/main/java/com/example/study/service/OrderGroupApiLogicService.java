@@ -4,7 +4,7 @@ import com.example.study.ifs.CrudInterface;
 import com.example.study.model.entity.OrderGroup;
 import com.example.study.model.network.Header;
 import com.example.study.model.network.request.OrderGroupApiRequest;
-import com.example.study.model.network.response.OrderGroupApiResponse;
+import com.example.study.model.network.request.OrderGroupApiResponse;
 import com.example.study.repository.OrderGroupRepository;
 import com.example.study.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
