@@ -1,8 +1,8 @@
 package com.example.study.model.entity;
 
-import com.example.study.model.enumClass.OrderGroupOrderType;
-import com.example.study.model.enumClass.OrderGroupPaymentType;
-import com.example.study.model.enumClass.OrderGroupStatus;
+import com.example.study.model.enumClass.OrderType;
+import com.example.study.model.enumClass.PaymentType;
+import com.example.study.model.enumClass.OrderStatus;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
@@ -31,17 +31,17 @@ public class OrderGroup {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private OrderGroupStatus status; // REGISTERED / UNREGISTERED / WAITING
+    private OrderStatus status; // REGISTERED / UNREGISTERED / WAITING
 
     @Enumerated(EnumType.STRING)
-    private OrderGroupOrderType orderType; // 주문의 형태 - 일괄? 개별?
+    private OrderType orderType; // 주문의 형태 - 일괄? 개별?
 
     private String revAddress;
 
     private String revName;
 
     @Enumerated(EnumType.STRING)
-    private OrderGroupPaymentType paymentType; // 결제 방식 - 현금? 카드?
+    private PaymentType paymentType; // 결제 방식 - 현금? 카드?
 
     private BigDecimal totalPrice;
 
