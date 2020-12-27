@@ -5,9 +5,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum OrderGroupOrderType {
-    ENTIRE(0, "일괄주문", "일괄주문"),
-    INDIVIDUAL(1, "개별주문", "개별주문")
+public enum OrderStatus {
+    ORDERING(0, "주문중", "주문 진행중"),
+    COMPLETE(1, "주문 완료", "주문 접수 완료 상태"),
+    CONFIRM(2, "배송 완료", "배송 완료 상태")
     ;
 
     private int id;
