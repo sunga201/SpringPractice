@@ -1,5 +1,6 @@
 package com.example.study.model.entity;
 
+import com.example.study.model.enumClass.PartnerStatus;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
@@ -27,7 +28,8 @@ public class Partner {
 
     private String name;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private PartnerStatus status;
 
     private String address;
 
