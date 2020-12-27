@@ -1,5 +1,8 @@
 package com.example.study.model.entity;
 
+import com.example.study.model.enumClass.OrderGroupOrderType;
+import com.example.study.model.enumClass.OrderGroupPaymentType;
+import com.example.study.model.enumClass.OrderGroupStatus;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
@@ -27,15 +30,18 @@ public class OrderGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderGroupStatus status; // REGISTERED / UNREGISTERED / WAITING
 
-    private String orderType; // 주문의 형태 - 일괄? 개별?
+    @Enumerated(EnumType.STRING)
+    private OrderGroupOrderType orderType; // 주문의 형태 - 일괄? 개별?
 
     private String revAddress;
 
     private String revName;
 
-    private String paymentType; // 결제 방식 - 현금? 카드?
+    @Enumerated(EnumType.STRING)
+    private OrderGroupPaymentType paymentType; // 결제 방식 - 현금? 카드?
 
     private BigDecimal totalPrice;
 

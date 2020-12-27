@@ -1,10 +1,13 @@
 package com.example.study.model.network.response;
 
+import com.example.study.model.enumClass.ItemStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -15,7 +18,8 @@ import java.time.LocalDateTime;
 public class ItemApiResponse {
     private Long id;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ItemStatus status;
 
     private String name;
 
