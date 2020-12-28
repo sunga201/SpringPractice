@@ -35,3 +35,11 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Front-end test codes ###
+src/main/resources/static/
+src/main/resources/templates/
+src/main/java/com/example/study/controller/page/*
+src/main/java/com/example/study/model/front/*
+
+
