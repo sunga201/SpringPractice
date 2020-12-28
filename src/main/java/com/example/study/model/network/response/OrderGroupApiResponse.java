@@ -1,8 +1,8 @@
-package com.example.study.model.network.request;
+package com.example.study.model.network.response;
 
+import com.example.study.model.enumClass.OrderStatus;
 import com.example.study.model.enumClass.OrderType;
 import com.example.study.model.enumClass.PaymentType;
-import com.example.study.model.enumClass.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +12,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -43,4 +44,6 @@ public class OrderGroupApiResponse {
     private LocalDateTime arrivalDate;
 
     private Long userId;
+
+    private List<ItemApiResponse> itemApiResponseList;
 }

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -32,4 +33,5 @@ public class UserApiResponse {
 
     private LocalDateTime unregisteredAt;
 
+    private List<OrderGroupApiResponse> orderGroupApiResponseList;
 }

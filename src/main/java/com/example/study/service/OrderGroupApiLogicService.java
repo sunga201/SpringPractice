@@ -3,7 +3,7 @@ package com.example.study.service;
 import com.example.study.model.entity.OrderGroup;
 import com.example.study.model.network.Header;
 import com.example.study.model.network.request.OrderGroupApiRequest;
-import com.example.study.model.network.request.OrderGroupApiResponse;
+import com.example.study.model.network.response.OrderGroupApiResponse;
 import com.example.study.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +83,7 @@ public class OrderGroupApiLogicService extends BaseService<OrderGroupApiRequest,
                 .orElseGet(()->Header.ERROR("데이터 없음."));
     }
 
-    private Header<OrderGroupApiResponse> getResponse(OrderGroup orderGroup){
+    public Header<OrderGroupApiResponse> getResponse(OrderGroup orderGroup){
         OrderGroupApiResponse body = OrderGroupApiResponse.builder()
                 .id(orderGroup.getId())
                 .status(orderGroup.getStatus())
